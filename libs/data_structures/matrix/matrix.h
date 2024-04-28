@@ -67,7 +67,7 @@ matrix createMatrixFromArray(const int *a, size_t nRows, size_t nCols);
 
 matrix *createArrayOfMatrixFromArray(const int *values,size_t nMatrices, size_t nRows, size_t nCols);
 
-void replaceMinMAx(matrix m);
+void replaceMinMax(matrix m);
 
 int getMax(int *a, int n);
 void sortRowsByMinElement(matrix m);

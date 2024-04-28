@@ -376,7 +376,7 @@ matrix *createArrayOfMatrixFromArray(const int *values, size_t nMatrices, size_t
     return ms;
 }
 
-void replaceMinMAx(matrix m) {
+void replaceMinMax(matrix m) {
     int max = INT_MIN;
     int min = INT_MAX;
     int maxI = 0;
@@ -439,8 +439,8 @@ void sortColsByMinElement(matrix m) {
 
         int sum = getMin(col, m.nRows);
         arr[i] = sum;
-        selectionSortBySumCols(arr, &m);
     }
+    selectionSortBySumCols(arr, &m);
 }
 matrix mulMatrices(matrix m1, matrix m2) {
     matrix m_new = getMemMatrix(m1.nRows, m2.nCols);
