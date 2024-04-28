@@ -80,4 +80,7 @@ bool isUnique(long long *a, int n);
 long long getSum1(int *a, int n);
 void transposeIfMatrixHasNotEqualSumOfRows(matrix m);
 
+bool isMutuallyInverseMatrices(matrix m1, matrix m2);
+matrix createIdentityMatrix(size_t nRows, size_t nCols);
+
 #endif //LAB_MATRIX_H
