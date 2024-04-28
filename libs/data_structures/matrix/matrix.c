@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <float.h>
 #include <string.h>
 #include "matrix.h"
 
@@ -871,7 +872,43 @@ int getNSpecialElement2(matrix m) {
     }
     return nSpecial;
 }
-//
+double getScalarProduct(int *a, int *b, int n) {
+    double mul = 0;
+
+    for (int i = 0; i < n; i++) {
+        mul += a[i] * b[i];
+    }
+    return mul;
+}
+
+double getVectorLength(int *a, int n) {
+    double sum = 0;
+
+    for (int i = 0; i < n; i++) {
+        sum += a[i] * a[i];
+    }
+    return sqrt(sum);
+}
+
+double getCosine(int *a, int *b, int n) {
+    double cos = getScalarProduct(a, b, n) / (getVectorLength(a, n) * getVectorLength(b, n));
+    return cos;
+}
+
+int getVectorIndexWithMaxAngle(matrix m, int *b) {
+    double res = DBL_MAX;
+    int idx = 0;
+
+    for (int i = 0; i < m.nRows; i++) {
+        double cur_res = getCosine(m.values[i], b, m.nRows);
+
+        if (cur_res < res) {
+            res = cur_res;
+            idx = i;
+        }
+    }
+    return idx;
+}
 
 long long getScalarProductRowAndCol(matrix m, int i, int j) {
     long long sum = 0;
