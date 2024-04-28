@@ -70,4 +70,7 @@ void replaceMinMAx(matrix m);
 int getMax(int *a, int n);
 void sortRowsByMinElement(matrix m);
 
+int getMin(int *a, int n);
+void sortColsByMinElement(matrix m);
+
 #endif //LAB_MATRIX_H
