@@ -48,6 +48,21 @@ void insertionSortBySumRowsInt(int *rows, matrix *m) {
     }
 }
 
+void insertionSortBySumMatrixInt(int *sums, matrix *ms, int n) {
+    for (size_t i = 1; i < n; i++) {
+        int t = sums[i];
+        matrix m = ms[i];
+        int j = i;
+        while (j > 0 && sums[j - 1] > t) {
+            sums[j] = sums[j - 1];
+            ms[j] = ms[j - 1];
+            j--;
+        }
+        sums[j] = t;
+        ms[j] = m;
+    }
+}
+
 void insertionSortBySumRowsFloat(float *rows, matrix *m) {
     for (size_t i = 1; i < m->nRows; i++) {
         float t = rows[i];
@@ -708,15 +723,44 @@ int countNonDescendingRowsMatrices(matrix *ms, int nMatrix) {
 }
 
 int countValues(const int *a, int n, int value) {
+    int counter = 0;
 
+    for (int i = 0; i < n; i++) {
+        if (a[i] == value) {
+            counter++;
+        }
+    }
+    return counter;
 }
 
 int countZeroRows(matrix m) {
+    int counter = 0;
 
+    for (int i = 0; i < m.nRows; i++) {
+        int res = countValues(m.values[i], m.nCols, 0);
+
+        if (res == m.nCols) {
+            counter++;
+        }
+    }
+    return counter;
 }
 
 void printMatrixWithMaxZeroRows(matrix *ms, int nMatrix) {
+    int arr[nMatrix];
 
+    for (int i = 0; i < nMatrix; i++) {
+        arr[i] = countZeroRows(ms[i]);
+    }
+    insertionSortBySumMatrixInt(arr, ms, nMatrix);
+    int max = arr[nMatrix - 1];
+
+    for (int j = nMatrix; j > 0; j--) {
+        if (arr[j] == max) {
+            outputMatrix(ms[j]);
+            printf("\n");
+        }
+    }
 }
 
 //

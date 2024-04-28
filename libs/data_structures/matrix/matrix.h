@@ -45,6 +45,8 @@ void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int*, int));
 
 void selectionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int*, int));
 
+void insertionSortBySumMatrixInt(int *sums, matrix *ms, int n);
+
 bool isSquareMatrix(matrix *m);
 
 bool areTwoMatricesEqual(matrix *m1, matrix *m2);
